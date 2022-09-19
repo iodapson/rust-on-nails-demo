@@ -1,4 +1,7 @@
+extern crate cornucopia;
 use cornucopia::{generate_managed, CodegenSettings, Error};
+use std::path::Path;
+use std::env;
 
 // This script will generate a new cornucopia file every time your schema or queries change.
 // In this example, we generate the module in our project, but
@@ -7,7 +10,9 @@ use cornucopia::{generate_managed, CodegenSettings, Error};
 fn main() -> Result<(), Error> {
     let queries_path = "queries";
     let schema_file = "schema.sql";
-    let destination = "src/cornucopia.rs";
+    //let destination = "src/cornucopia.rs";
+    let out_dir = env::var_os("OUT_DIR").unwrap();
+    let destination = Path::new(&out_dir).join("cornucopia.rs").to_str().unwrap();
     let settings = CodegenSettings {
         is_async: true,
         derive_ser: false,
