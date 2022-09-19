@@ -6,3 +6,18 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tokio = { version = "1.21.0", default-features = false, features = ["macros", "rt-multi-thread"] }
+# Used by cornucopia and the main app
+futures = "0.3.24"
+# Access to the database https://github.com/LouisGariepy/cornucopia
+deadpool-postgres = { version = "0.10.2", features = ["serde"] }
+#postgres-types = { version = "0", features = ["derive"] }
+tokio-postgres = { version = "0.7.7", features = [
+    "with-time-0_3",
+] }
+tokio-postgres-rustls = "0.9.0"
+time = { version = "0.3.14", default-features = false,  features = ["formatting"] }
+cornucopia = "0.8.1"
+rustls = "0.20.6"
+webpki-roots = "0.22.4"
+axum = "0.5.16"
