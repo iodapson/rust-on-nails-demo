@@ -12,7 +12,6 @@ fn main() -> Result<(), Error> {
     let schema_file = "schema.sql";
     //let destination = "src/cornucopia.rs";
     let out_dir = env::var_os("OUT_DIR").unwrap();
-    let destination = Path::new(&out_dir).join("cornucopia.rs").to_str().unwrap();
     let settings = CodegenSettings{
         is_async: true,
         derive_ser: false,
@@ -23,10 +22,11 @@ fn main() -> Result<(), Error> {
     generate_managed(
         queries_path,
         vec![schema_file.into()],
-        Some(destination),
+        Some( Path::new(&out_dir).join("cornucopia.rs").to_str().unwrap() ),
         false,
         settings,
     )?;
 
     Ok(())
 }
+//Irrelevant Note: Resolved cornucopia dependency issue; https://github.com/cornucopia-rs/cornucopia/issues/158
