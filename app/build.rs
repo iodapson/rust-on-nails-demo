@@ -13,7 +13,7 @@ fn main() -> Result<(), Error> {
     //let destination = "src/cornucopia.rs";
     let out_dir = env::var_os("OUT_DIR").unwrap();
     let destination = Path::new(&out_dir).join("cornucopia.rs").to_str().unwrap();
-    let settings = CodegenSettings {
+    let settings = CodegenSettings{
         is_async: true,
         derive_ser: false,
     };
